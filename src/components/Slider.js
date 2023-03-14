@@ -2,6 +2,10 @@ import styled from "styled-components";
 import ArrowLeftOutlinedIcon from "@mui/icons-material/ArrowLeftOutlined";
 import ArrowRightOutlinedIcon from "@mui/icons-material/ArrowRightOutlined";
 import Photo1 from "../assets/slider1.jpeg";
+import { useState } from "react";
+import { sliderItems } from "../data";
+import Photo2 from "../assets/slider2.jpeg";
+import Photo3 from "../assets/slider3.jpeg";
 
 const Container = styled.div`
   width: 100%;
@@ -27,11 +31,14 @@ const Arrow = styled.div`
   margin: auto;
   cursor: pointer;
   opacity: 0.5;
+  z-index: 2;
 `;
 
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
+  transition: all 1.5s ease;
+  transform: translateX(${(props) => props.slideIndex * -100}vw);
 `;
 
 const Slide = styled.div`
@@ -39,6 +46,7 @@ const Slide = styled.div`
   height: 100vh;
   display: flex;
   align-items: center;
+  background-color: #${(props) => props.bg};
 `;
 const ImgContainer = styled.div`
   flex: 1;
@@ -50,64 +58,59 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-    font-size: 70px;
+  font-size: 70px;
 `;
 const Desc = styled.p`
-    margin: 50px 0;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 3px;
+  margin: 50px 0;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 3px;
 `;
 const Button = styled.button`
-    padding: 10px;
-    font-size: 20px;
-    background-color: transparent;
-    cursor: pointer;
+  padding: 10px;
+  font-size: 20px;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 const Image = styled.img`
   height: 80%;
+  width: 75%;
+  margin: 50px;
+  padding-left: 20px;
 `;
 
 const Slider = () => {
+  const [slideIndex, setslideIndex] = useState(0);
+
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setslideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+    } else {
+      setslideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+    }
+  };
+
   return (
     <Container>
-      <Arrow direction="left">
+      <Arrow direction="left" onClick={() => handleClick("left")}>
         <ArrowLeftOutlinedIcon />
       </Arrow>
-      <Wrapper>
-        <Slide>
-          <ImgContainer>
-            <Image src={Photo1} />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>SEASON SALE</Title>
-            <Desc>All you need is "SALE" not "LOVE".</Desc>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </Slide>
-        <Slide>
-          <ImgContainer>
-            <Image src={Photo1} />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>SEASON SALE</Title>
-            <Desc>All you need is "SALE" not "LOVE".</Desc>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </Slide>
-        <Slide>
-          <ImgContainer>
-            <Image src={Photo1} />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>SEASON SALE</Title>
-            <Desc>All you need is "SALE" not "LOVE".</Desc>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </Slide>
+      <Wrapper slideIndex={slideIndex}>
+        {sliderItems.map((item) => (
+          <Slide bg={item.bg} key={item.id}>
+            <ImgContainer>
+              <Image src={item.img} />
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Desc>{item.desc}</Desc>
+              <Button>SHOP NOW</Button>
+            </InfoContainer>
+          </Slide>
+        ))}
       </Wrapper>
-      <Arrow direction="right">
+      <Arrow direction="right" onClick={() => handleClick("right")}>
         <ArrowRightOutlinedIcon />
       </Arrow>
     </Container>
