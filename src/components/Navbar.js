@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #d8d8d8;
 `;
 
 const Left = styled.div`
@@ -45,7 +46,7 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
-  font-family: 'Indie Flower', cursive;
+  font-family: "Indie Flower", cursive;
 `;
 
 const Right = styled.div`
@@ -69,7 +70,9 @@ const Navbar = () => {
           <Language>EN</Language>
           <SearchContainer>
             <Input />
-            <Search style={{ color: "gray", fontSize: "16px" }} />
+            <Search
+              style={{ color: "gray", fontSize: "22px", marginLeft: "9px" }}
+            />
           </SearchContainer>
         </Left>
         <Center>

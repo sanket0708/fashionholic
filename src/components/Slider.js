@@ -47,6 +47,7 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
   background-color: #${(props) => props.bg};
+  background-color: #d8d8d8;
 `;
 const ImgContainer = styled.div`
   flex: 1;
