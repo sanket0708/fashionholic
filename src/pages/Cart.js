@@ -49,6 +49,10 @@ const Info = styled.div`
 
 const Summary = styled.div`
   flex: 1;
+  border: 0.5px solid lightgray;
+  border-radius: 10px;
+  padding: 20px;
+  height: 50vh;
 `;
 
 const Product = styled.div`
@@ -61,6 +65,8 @@ const ProductDetail = styled.div`
 `;
 const Image = styled.img`
   width: 200px;
+  padding: 15px;
+  margin: 18px;
 `;
 const Details = styled.div`
   padding: 20px;
@@ -105,6 +111,27 @@ const Hr = styled.hr`
   height: 1px;
 `;
 
+const SummaryTitle = styled.h1`
+  font-weight: 200;
+`;
+const SummaryItem = styled.div`
+  margin: 30px 0px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: ${(props) => props.type === "total" && "500"};
+  font-size: ${(props) => props.type === "total" && "24px"};
+`;
+const SummaryItemText = styled.span``;
+const SummaryItemPrice = styled.span``;
+const Button = styled.button`
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+`;
+
 const Cart = () => {
   return (
     <Container>
@@ -124,17 +151,17 @@ const Cart = () => {
           <Info>
             <Product>
               <ProductDetail>
-                <Image src="https://cdn.shopify.com/s/files/1/0181/8457/products/D1143-493-DEANNAHALTERDRESS-BLACK-001_480x.jpg?v=1675891640" />
+                <Image src="https://cdn.shopify.com/s/files/1/0181/8457/products/LK308-1211-AVIGNONCROPPEDCARDIGAN-OATMEAL_000_1_a5b4aaf1-ca02-4fc5-baf9-a41477f3678e.jpg?v=1675707030" />
                 <Details>
                   <ProductName>
-                    <b>Product:</b> Deanna Halter Mini Dress
+                    <b>Product:</b> Avignon Cropped Cardigan
                   </ProductName>
                   <ProductId>
                     <b>ID:</b> 9114736
                   </ProductId>
-                  <ProductColor color="black" />
+                  <ProductColor color="gray" />
                   <ProductSize>
-                    <b>Size:</b>37.5
+                    <b>Size:</b> XS, S, M
                   </ProductSize>
                 </Details>
               </ProductDetail>
@@ -150,17 +177,17 @@ const Cart = () => {
             <Hr />
             <Product>
               <ProductDetail>
-                <Image src="https://cdn.shopify.com/s/files/1/0181/8457/products/D1143-493-DEANNAHALTERDRESS-BLACK-001_480x.jpg?v=1675891640" />
+                <Image src="https://cdn.shopify.com/s/files/1/0181/8457/products/K1184-1292-EMELITAPULLOVER-VIVIDPINK-001_1166a86c-1e06-4a7a-9270-eb53e068c4c5_480x.jpg?v=1668635210" />
                 <Details>
                   <ProductName>
-                    <b>Product:</b> Deanna Halter Mini Dress
+                    <b>Product:</b> Guthrie Cardigan
                   </ProductName>
                   <ProductId>
                     <b>ID:</b> 9114736
                   </ProductId>
-                  <ProductColor color="black" />
+                  <ProductColor color="pink" />
                   <ProductSize>
-                    <b>Size:</b>37.5
+                    <b>Size:</b> S, M, L
                   </ProductSize>
                 </Details>
               </ProductDetail>
@@ -170,11 +197,30 @@ const Cart = () => {
                   <ProductAmount>2</ProductAmount>
                   <Remove />
                 </ProductAmountContainer>
-                <ProductPrice>250$</ProductPrice>
+                <ProductPrice>310$</ProductPrice>
               </PriceDetail>
             </Product>
           </Info>
-          <Summary>Summary</Summary>
+          <Summary>
+            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+            <SummaryItem>
+              <SummaryItemText>Subtotal</SummaryItemText>
+              <SummaryItemPrice>$ 80</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem>
+              <SummaryItemText>Estimated shipping</SummaryItemText>
+              <SummaryItemPrice>$ 5.9</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem>
+              <SummaryItemText>Shipping discount</SummaryItemText>
+              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem type="total">
+              <SummaryItemText>Total</SummaryItemText>
+              <SummaryItemPrice>$ 80</SummaryItemPrice>
+            </SummaryItem>
+            <Button>Check out now</Button>
+          </Summary>
         </Bottom>
       </Wrapper>
       <Footer />
